@@ -1,7 +1,7 @@
 <template>
   <h1>LoginPage</h1>
   <div class="form-container">
-    <form @submit.prevent="sendPostRequest()" class="login-form">
+    <form @submit.prevent="login(username, password)" class="login-form">
       <div class="username-form">
         <label for="username">UserName</label
         ><input type="text" name="username" id="username" v-model="username" />
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapState } from "pinia";
+import { useGameStore } from "../store/myStore.js";
 
 export default {
   data() {
@@ -25,19 +26,11 @@ export default {
       password: "",
     };
   },
+  computed: {
+    ...mapState(useGameStore, ["authToken"]),
+  },
   methods: {
-    sendPostRequest() {
-      axios
-        .post("http://apigame.co/auth/login", {
-          username: this.username,
-          password: this.password,
-        })
-        //
-        .then((response) => {
-          console.log(response);
-          console.log(response.data);
-        });
-    },
+    ...mapActions(useGameStore, ["login"]),
   },
 };
 </script>
