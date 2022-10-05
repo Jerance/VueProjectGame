@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import NewFactoryView from "../views/NewFactoryView.vue";
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: () => import("../views/LoginView.vue"),
+  },
+  {
+    path: "/new-factory",
+    name: "newFactory",
+    component: NewFactoryView,
   },
 ];
 
