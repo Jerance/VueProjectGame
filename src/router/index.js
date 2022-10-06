@@ -19,6 +19,21 @@ const routes = [
     component: () => import("../views/LoginView.vue"),
   },
   {
+    path: "/market",
+    name: "market",
+    component: () => import("../views/MarketView.vue"),
+  },
+  {
+    path: "/market/mytrades",
+    name: "marketMyTrades",
+    component: () => import("../views/MarketMyTrades.vue"),
+  },
+  {
+    path: "/market/newtrades",
+    name: "marketNewTrades",
+    component: () => import("../views/MarketNewTrades.vue"),
+  },
+  {
     path: "/new-factory",
     name: "newFactory",
     component: NewFactoryView,
