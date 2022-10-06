@@ -1,7 +1,10 @@
 <template>
   <h1>LoginPage</h1>
   <div class="form-container">
-    <form @submit.prevent="login(username, password)" class="login-form">
+    <form
+      @submit.prevent="login(username, password), routerHomeConfirm()"
+      class="login-form"
+    >
       <div class="username-form">
         <label for="username">UserName</label
         ><input
@@ -21,10 +24,8 @@
           v-model="password"
           required
         />
-        <button type="submit">
-          <router-link to="/home">Confirm</router-link>
-        </button>
       </div>
+      <button type="submit">Confirm</button>
     </form>
   </div>
 </template>
@@ -45,6 +46,9 @@ export default {
   },
   methods: {
     ...mapActions(useGameStore, ["login"]),
+    routerHomeConfirm() {
+      this.$router.push("/home");
+    },
   },
 };
 </script>

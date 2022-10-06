@@ -11,8 +11,12 @@ export const useGameStore = defineStore("store", {
   actions: {
     async fetch(url) {
       try {
-        await axios.get("http://apigame.co/" + url, this.axiosHeader);
-        console.log(url + "fetched");
+        const response = await axios.get(
+          "http://apigame.co/" + url,
+          this.axiosHeader
+        );
+        console.log(url + " reached");
+        return response;
       } catch (error) {
         if (error.response) {
           // Request made and server responded
@@ -29,28 +33,30 @@ export const useGameStore = defineStore("store", {
         }
       }
     },
-    post(url, input) {
-      return axios
-        .post("http://apigame.co/" + url, input, this.axiosHeader)
-        .then((response) => {
-          console.log("reached" + url);
-          return response;
-        })
-        .catch(function verifErrorpw(error) {
-          if (error.response) {
-            // Request made and server responded
-            alert("Error: unable to reach " + url);
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log("Error", error.message);
-          }
-        });
+    async post(url, input) {
+      try {
+        const response = await axios.post(
+          "http://apigame.co/" + url,
+          input,
+          this.axiosHeader
+        );
+        console.log("reached " + url);
+        return response;
+      } catch (error) {
+        if (error.response) {
+          // Request made and server responded
+          alert("Error: unable to reach " + url);
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      }
     },
     fetchMyFactories() {
       console.log("fetching factories");
@@ -69,6 +75,11 @@ export const useGameStore = defineStore("store", {
           headers: { Authorization: "Bearer " + resource.data.access_token },
         };
       });
+    },
+    logout() {
+      this.authToken = "";
+      this.axiosHeader = {};
+      this.username = "";
     },
   },
 });
