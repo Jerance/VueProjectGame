@@ -104,14 +104,14 @@ export const useGameStore = defineStore("store", {
     },
     getAllTrades() {
       this.fetch("trades/all", {}).then((resource) => {
-        this.trades = resource.data;
-        console.log(resource.data);
+        this.trades = resource;
+        console.log(resource);
       });
     },
     getAllMyTrades(mytrades) {
       this.fetch("trades/my", {}).then((response) => {
         this.mytrades = mytrades;
-        mytrades = response.data;
+        mytrades = response;
         console.log(response);
         console.log(mytrades);
       });
@@ -123,7 +123,7 @@ export const useGameStore = defineStore("store", {
         unitPrice: unitPrice,
       }).then((resource) => {
         console.log(resource);
-        console.log(resource.data);
+        console.log(resource);
       });
     },
     createNewRessource() {
