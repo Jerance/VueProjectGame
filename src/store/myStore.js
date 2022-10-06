@@ -40,7 +40,7 @@ export const useGameStore = defineStore("store", {
           this.axiosHeader
         );
         console.log("reached " + url);
-        return response;
+        return response.data;
       } catch (error) {
         if (error.response) {
           // Request made and server responded
@@ -80,9 +80,9 @@ export const useGameStore = defineStore("store", {
         username: this.username,
         password: pw,
       }).then((resource) => {
-        this.authToken = resource.data.access_token;
+        this.authToken = resource.access_token;
         this.axiosHeader = {
-          headers: { Authorization: "Bearer " + resource.data.access_token },
+          headers: { Authorization: "Bearer " + resource.access_token },
         };
       });
     },
