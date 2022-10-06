@@ -54,7 +54,9 @@ export const useGameStore = defineStore("store", {
     },
     fetchMyFactories() {
       console.log("fetching factories");
-      this.fetch("factories").then((response) => { this.myFactories = response});
+      this.fetch("factories").then((response) => {
+        this.myFactories = response;
+      });
     },
     login(id, pw) {
       this.username = id;
