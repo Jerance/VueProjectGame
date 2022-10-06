@@ -9,18 +9,37 @@ export const useGameStore = defineStore("store", {
     username: "",
   }),
   actions: {
-    fetchMyFactories() {
-      console.log("fetching factories");
-
-      this.myFactories = axios
-        .get("http://apigame.co/factories", this.axiosHeader)
-        .then(() => {
-          console.log("factories fetched");
+    async fetch(url) {
+      try {
+        await axios.get("http://apigame.co/" + url, this.axiosHeader);
+        console.log(url + "fetched");
+      } catch (error) {
+        if (error.response) {
+          // Request made and server responded
+          alert("Error: unable to fetch " + url);
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      }
+    },
+    post(url, input) {
+      return axios
+        .post("http://apigame.co/" + url, input, this.axiosHeader)
+        .then((response) => {
+          console.log("reached" + url);
+          return response;
         })
         .catch(function verifErrorpw(error) {
           if (error.response) {
             // Request made and server responded
-            alert("Error: unable to fetch factories");
+            alert("Error: unable to reach " + url);
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
@@ -33,34 +52,23 @@ export const useGameStore = defineStore("store", {
           }
         });
     },
+    fetchMyFactories() {
+      console.log("fetching factories");
+      this.fetch("factories").then((response) => {
+        this.myFactories = response;
+      });
+    },
     login(id, pw) {
       this.username = id;
-      axios
-        .post("http://apigame.co/auth/login", {
-          username: this.username,
-          password: pw,
-        })
-        .then((response) => {
-          this.authToken = response.data.access_token;
-          this.axiosHeader = {
-            headers: { Authorization: "Bearer " + response.data.access_token },
-          };
-        })
-        .catch(function verifErrorpw(error) {
-          if (error.response) {
-            // Request made and server responded
-            alert("Erreur : Vous vous êtes trompés dans votre mot de passe");
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log("Error", error.message);
-          }
-        });
+      this.post("auth/login", {
+        username: this.username,
+        password: pw,
+      }).then((resource) => {
+        this.authToken = resource.data.access_token;
+        this.axiosHeader = {
+          headers: { Authorization: "Bearer " + resource.data.access_token },
+        };
+      });
     },
   },
 });
