@@ -25,13 +25,13 @@ const routes = [
   },
   {
     path: "/market/mytrades",
-    name: "marketMyTrades",
-    component: () => import("../views/MarketMyTrades.vue"),
+    name: "marketMyTradesView",
+    component: () => import("../views/MarketMyTradesView.vue"),
   },
   {
     path: "/market/newtrades",
-    name: "marketNewTrades",
-    component: () => import("../views/MarketNewTrades.vue"),
+    name: "marketNewTradesView",
+    component: () => import("../views/MarketNewTradesView.vue"),
   },
   {
     path: "/new-factory",
