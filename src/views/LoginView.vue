@@ -21,8 +21,8 @@
           v-model="password"
           required
         />
+        <button type="submit">Confirm</button>
       </div>
-      <button type="submit">Confirm</button>
     </form>
   </div>
 </template>
@@ -52,10 +52,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: #737373 0px 0px 5px;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #dfdfdf;
 }
 
-form.login-form {
+form.sign-up-form {
   display: flex;
   flex-direction: column;
+}
+
+.form-container input {
+  margin-bottom: 10px;
+}
+
+.form-container button {
+  margin-top: 10px;
+}
+
+.form-container button:disabled {
+  background-color: grey;
+}
+
+.form-container button:hover {
+  background-color: #a7a7a7;
 }
 </style>

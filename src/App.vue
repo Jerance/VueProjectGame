@@ -34,6 +34,11 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(220, 220, 220, 0.5);
+}
 .container {
   display: flex;
   justify-content: space-around;
@@ -62,9 +67,11 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(123, 123, 123);
-  color: white;
-  height: 50px;
+  background-color: #dfdfdf;
+  height: 100%;
+  border-radius: 5px;
+  border-bottom: #2c3e50 solid 1px;
+  padding: 10px;
 }
 
 #app {
