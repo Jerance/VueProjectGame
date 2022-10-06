@@ -76,5 +76,10 @@ export const useGameStore = defineStore("store", {
         };
       });
     },
+    logout() {
+      this.authToken = "";
+      this.axiosHeader = {};
+      this.username = "";
+    },
   },
 });
