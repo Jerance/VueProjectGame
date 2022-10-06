@@ -30,12 +30,11 @@ export const useGameStore = defineStore("store", {
       }
     },
     post(url, input) {
-      let res = false;
-      axios
+      return axios
         .post("http://apigame.co/" + url, input, this.axiosHeader)
         .then((response) => {
-          res = response;
           console.log("reached" + url);
+          return response;
         })
         .catch(function verifErrorpw(error) {
           if (error.response) {
@@ -52,22 +51,22 @@ export const useGameStore = defineStore("store", {
             console.log("Error", error.message);
           }
         });
-      return res;
     },
     fetchMyFactories() {
       console.log("fetching factories");
-      this.myFactories = this.fetch("factories");
+      this.fetch("factories").then((response) => { this.myFactories = response});
     },
     login(id, pw) {
       this.username = id;
-      let resource = this.post("auth/login", {
+      this.post("auth/login", {
         username: this.username,
         password: pw,
+      }).then((resource) => {
+        this.authToken = resource.data.access_token;
+        this.axiosHeader = {
+          headers: { Authorization: "Bearer " + resource.data.access_token },
+        };
       });
-      this.authToken = resource.data.access_token;
-      this.axiosHeader = {
-        headers: { Authorization: "Bearer " + resource.data.access_token },
-      };
     },
   },
 });
