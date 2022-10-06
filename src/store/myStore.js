@@ -9,6 +9,7 @@ export const useGameStore = defineStore("store", {
     myFactories: [],
     axiosHeader: {},
     username: "",
+    userrole: 9,
   }),
   actions: {
     async fetch(url) {
@@ -73,6 +74,12 @@ export const useGameStore = defineStore("store", {
       return this.fetch("users/factory-limit").then((response) => {
         this.nbMaxFactories = response.factory_limit;
       }).factory_limit;
+    },
+    FetchMyRole() {
+      console.log("fetching userrrole");
+      this.fetch("auth/me").then((response) => {
+        this.userrole = response.data.role;
+      });
     },
     login(id, pw) {
       this.username = id;
