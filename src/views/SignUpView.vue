@@ -49,7 +49,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "pinia";
+import { useGameStore } from "../store/myStore";
 
 export default {
   data() {
@@ -61,15 +62,14 @@ export default {
     };
   },
   methods: {
+    ...mapActions(useGameStore, ["post"]),
     createPostRequest() {
-      axios
-        .post("http://apigame.co/auth/signup", {
-          username: this.username,
-          password: this.password,
-        })
-        .then(() => {
-          alert("Account successfully created");
-        });
+      this.post("auth/signup", {
+        username: this.username,
+        password: this.password,
+      }).then(() => {
+        alert("Account successfully created");
+      });
     },
   },
 };
