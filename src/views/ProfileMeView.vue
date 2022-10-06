@@ -44,7 +44,7 @@ export default {
     ...mapActions(useGameStore, ["FetchMyRole"]),
 
     MyTrades() {
-      this.$router.push("/App");
+      this.$router.push("/market/mytrades");
     },
     MyFactorys() {
       this.$router.push("/");
