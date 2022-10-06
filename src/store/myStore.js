@@ -7,6 +7,7 @@ export const useGameStore = defineStore("store", {
     myFactories: [],
     axiosHeader: {},
     username: "",
+    userrole: 9,
   }),
   actions: {
     async fetch(url) {
@@ -62,6 +63,12 @@ export const useGameStore = defineStore("store", {
       console.log("fetching factories");
       this.fetch("factories").then((response) => {
         this.myFactories = response;
+      });
+    },
+    FetchMyRole() {
+      console.log("fetching userrrole");
+      this.fetch("auth/me").then((response) => {
+        this.userrole = response.data.role;
       });
     },
     login(id, pw) {
