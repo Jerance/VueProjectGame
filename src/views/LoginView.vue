@@ -21,7 +21,9 @@
           v-model="password"
           required
         />
-        <button type="submit">Confirm</button>
+        <button type="submit">
+          <router-link to="/home">Confirm</router-link>
+        </button>
       </div>
     </form>
   </div>
