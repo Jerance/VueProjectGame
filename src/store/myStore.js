@@ -16,7 +16,6 @@ export const useGameStore = defineStore("store", {
           console.log(response);
           this.authToken = response.data;
           console.log(this.authToken);
-          alert("Vous vous êtes connectés avec succès !");
         })
         .catch(function verifErrorpw(error) {
           if (error.response) {
