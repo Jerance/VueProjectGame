@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="NEW Factory" />
+    <h2>New factory</h2>
+    <p>You have {{ emptySpots }} empty factory spots</p>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { mapActions } from "pinia";
+import { useGameStore } from "../store/myStore";
 
 export default {
   name: "NewFactoryView",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      factories: ["", "", "", ""],
+      totalSpots: 7,
+    };
+  },
+  computed: {
+    emptySpots() {
+      return this.totalSpots - this.factories.length;
+    },
+  },
+  methods: {
+    ...mapActions(useGameStore, ["fetchMyFactories"]),
+  },
+  mounted() {
+    this.fetchMyFactories();
   },
 };
 </script>
