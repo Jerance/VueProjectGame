@@ -5,7 +5,7 @@
     </div>
     <div v-if="authToken != ''" class="container">
       <router-link to="/">Inventory</router-link>
-      <router-link to="/">Market</router-link>
+      <router-link to="/market">Market</router-link>
     </div>
     <div class="connection" v-if="authToken == ''">
       <router-link to="/login">Login</router-link>
