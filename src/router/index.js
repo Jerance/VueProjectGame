@@ -38,6 +38,11 @@ const routes = [
     name: "newFactory",
     component: NewFactoryView,
   },
+  {
+    path: "/ProfileMeView",
+    name: "ProfileMeView",
+    component: () => import("../views/ProfileMeView.vue"),
+  },
 ];
 
 const router = createRouter({

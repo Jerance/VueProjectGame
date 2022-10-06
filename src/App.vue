@@ -12,7 +12,7 @@
       <router-link to="/signup">SignUp</router-link>
     </div>
     <div class="profilePerso" v-else>
-      <router-link to="/home">{{ username }}</router-link>
+      <router-link to="/ProfileMeView">{{ username }}</router-link>
       <img
         src="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png"
         alt="avatar"

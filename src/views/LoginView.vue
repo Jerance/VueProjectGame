@@ -24,8 +24,8 @@
           v-model="password"
           required
         />
-        <button type="submit">Confirm</button>
       </div>
+      <button type="submit">Confirm</button>
     </form>
   </div>
 </template>
