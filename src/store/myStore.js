@@ -6,6 +6,7 @@ export const useGameStore = defineStore("store", {
     authToken: "",
     myFactories: [],
     axiosHeader: {},
+    username: "",
   }),
   actions: {
     fetchMyFactories() {
@@ -33,9 +34,10 @@ export const useGameStore = defineStore("store", {
         });
     },
     login(id, pw) {
+      this.username = id;
       axios
         .post("http://apigame.co/auth/login", {
-          username: id,
+          username: this.username,
           password: pw,
         })
         .then((response) => {

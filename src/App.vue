@@ -3,16 +3,16 @@
     <div>
       <router-link to="/">Jeu</router-link>
     </div>
-    <div v-if="user != ''" class="container">
+    <div v-if="authToken != ''" class="container">
       <router-link to="/">Inventory</router-link>
       <router-link to="/">Market</router-link>
     </div>
-    <div class="connection" v-if="user == ''">
+    <div class="connection" v-if="authToken == ''">
       <router-link to="/login">Login</router-link>
       <router-link to="/signup">SignUp</router-link>
     </div>
     <div class="profilePerso" v-else>
-      <router-link to="/home">{{ user }}</router-link>
+      <router-link to="/home">{{ username }}</router-link>
       <img
         src="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png"
         alt="avatar"
@@ -23,17 +23,30 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia";
+import { useGameStore } from "./store/myStore.js";
+
 export default {
   name: "App",
   data() {
-    return {
-      user: "",
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(useGameStore, ["authToken"]),
+    ...mapState(useGameStore, ["username"]),
+  },
+  methods: {
+    ...mapActions(useGameStore, ["login"]),
   },
 };
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(220, 220, 220, 0.5);
+}
 .container {
   display: flex;
   justify-content: space-around;
@@ -62,9 +75,11 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(123, 123, 123);
-  color: white;
-  height: 50px;
+  background-color: #dfdfdf;
+  height: 100%;
+  border-radius: 5px;
+  border-bottom: #2c3e50 solid 1px;
+  padding: 10px;
 }
 
 #app {
