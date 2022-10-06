@@ -4,11 +4,23 @@
     <form @submit.prevent="login(username, password)" class="login-form">
       <div class="username-form">
         <label for="username">UserName</label
-        ><input type="text" name="username" id="username" v-model="username" />
+        ><input
+          type="text"
+          name="username"
+          id="username"
+          v-model="username"
+          required
+        />
       </div>
       <div class="password-form">
         <label class="username-label" for="password">Password</label
-        ><input type="text" name="password" id="password" v-model="password" />
+        ><input
+          type="password"
+          name="password"
+          id="password"
+          v-model="password"
+          required
+        />
       </div>
       <button type="submit">Confirm</button>
     </form>

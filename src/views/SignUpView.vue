@@ -4,13 +4,46 @@
     <form @submit.prevent="createPostRequest()" class="sign-up-form">
       <div class="username-form">
         <label for="username">UserName</label
-        ><input type="text" name="username" id="username" v-model="username" />
+        ><input
+          type="text"
+          name="username"
+          id="username"
+          v-model="username"
+          required
+        />
       </div>
       <div class="password-form">
         <label class="username-label" for="password">Password</label
-        ><input type="text" name="password" id="password" v-model="password" />
+        ><input
+          type="password"
+          name="password"
+          id="password"
+          v-model="password"
+          required
+        />
       </div>
-      <button type="submit">Confirm</button>
+      <div class="re-password-form" v-if="re_password != password">
+        <label class="username-label" for="password">Confirm Password</label
+        ><input
+          type="password"
+          name="re-password"
+          id="re-password"
+          v-model="re_password"
+          required
+        />
+        <button :disabled="isActive">Confirm</button>
+      </div>
+      <div class="password-form" v-else>
+        <label class="username-label" for="password">Confirm Password</label
+        ><input
+          type="password"
+          name="re-password"
+          id="re-password"
+          v-model="re_password"
+          required
+        />
+        <button type="submit">Confirm</button>
+      </div>
     </form>
   </div>
 </template>
@@ -23,6 +56,8 @@ export default {
     return {
       username: "",
       password: "",
+      re_password: "",
+      isActive: true,
     };
   },
   methods: {
