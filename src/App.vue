@@ -3,16 +3,16 @@
     <div>
       <router-link to="/">Jeu</router-link>
     </div>
-    <div v-if="user != ''" class="container">
+    <div v-if="authToken != ''" class="container">
       <router-link to="/">Inventory</router-link>
       <router-link to="/">Market</router-link>
     </div>
-    <div class="connection" v-if="user == ''">
+    <div class="connection" v-if="authToken == ''">
       <router-link to="/login">Login</router-link>
       <router-link to="/signup">SignUp</router-link>
     </div>
     <div class="profilePerso" v-else>
-      <router-link to="/home">{{ user }}</router-link>
+      <router-link to="/home">{{ username }}</router-link>
       <img
         src="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png"
         alt="avatar"
@@ -23,12 +23,20 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia";
+import { useGameStore } from "./store/myStore.js";
+
 export default {
   name: "App",
   data() {
-    return {
-      user: "",
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(useGameStore, ["authToken"]),
+    ...mapState(useGameStore, ["username"]),
+  },
+  methods: {
+    ...mapActions(useGameStore, ["login"]),
   },
 };
 </script>

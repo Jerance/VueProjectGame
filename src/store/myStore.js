@@ -4,12 +4,14 @@ import axios from "axios";
 export const useGameStore = defineStore("store", {
   state: () => ({
     authToken: "",
+    username: "",
   }),
   actions: {
     login(id, pw) {
+      this.username = id;
       axios
         .post("http://apigame.co/auth/login", {
-          username: id,
+          username: this.username,
           password: pw,
         })
         .then((response) => {
