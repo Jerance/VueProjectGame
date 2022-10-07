@@ -1,24 +1,39 @@
 <template>
   <div v-if="authToken" class="home">
-    <router-link to="/new-factory">New Factory</router-link>
-    <HelloWorld msg="A retirer" />
+    <h1>Jeu</h1>
+    <button @click="newFactory">New factory</button>
+    <Factory v-for="factory in myFactories" :key="factory" :data="factory" />
   </div>
-  <h1 v-else>Please login or signup</h1>
+  <h1 v-else>
+    Please <router-link to="/login"> Login</router-link> or
+    <router-link to="/signup"> SignUp</router-link>
+  </h1>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 import { useGameStore } from "../store/myStore";
+import Factory from "@/components/Factory.vue";
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    Factory,
   },
   computed: {
-    ...mapState(useGameStore, ["authToken"]),
+    ...mapState(useGameStore, ["authToken", "myFactories"]),
+  },
+  methods: {
+    ...mapActions(useGameStore, ["fetchMyFactories", "fetchInventory"]),
+    newFactory() {
+      this.$router.push("/new-factory");
+    },
+  },
+  beforeUpdate() {
+    if (this.authToken && this.myFactories.length == 0) {
+      this.fetchMyFactories();
+      this.fetchInventory();
+    }
   },
 };
 </script>
