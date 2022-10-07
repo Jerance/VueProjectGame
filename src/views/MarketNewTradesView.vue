@@ -20,10 +20,39 @@
       <span>Pièces</span>
     </p>
   </div>
+  <p>{{ ressources }}</p>
+  <p>{{ quantity }}</p>
+  <p>{{ price }}</p>
+
   <button v-on:click="createNewTrade(ressources, quantity, price)">
     CreateNewTrade
   </button>
-  <button v-on:click="createNewRessource()">CreateRessource</button>
+  <!--
+  <div>
+    <div>
+      <select
+        name="ressources"
+        @change="onChangeRessource"
+        v-model="ressources_name"
+      >
+        <option disabled="true">Choose one of ressources</option>
+        <option name="Bois">Bois</option>
+        <option name="Fer">Fer</option>
+        <option name="Pierre">Pierre</option>
+      </select>
+    </div>
+    <p>
+      ImageUrl<input
+        type="text"
+        name="img_url"
+        id="img_url"
+        v-model="img_URL"
+      />
+    </p>
+    <input type="text" name="basevalue" id="basevalue" v-model="base_value" />
+  </div>
+  -->
+  <button v-on:click="createNewRessource2()">CreateRessource</button>
 </template>
 
 <script>
@@ -40,6 +69,9 @@ export default {
         { value: 2, text: "Iron" },
         { value: 3, text: "Stone" },
       ],
+      ressources_name: "",
+      img_URL: "",
+      base_value: 0,
       ressources: 0,
       quantity: 0,
       price: 0,
@@ -50,9 +82,12 @@ export default {
   },
   methods: {
     ...mapActions(useGameStore, ["createNewTrade"]),
-    ...mapActions(useGameStore, ["createNewRessource"]),
+    ...mapActions(useGameStore, ["createNewRessource2"]),
     onChange(event) {
       console.log(event.target.value, this.ressources);
+    },
+    onChangeRessource(eventRessource) {
+      console.log(eventRessource.target.text, this.ressources_name);
     },
   },
 };

@@ -10,6 +10,7 @@
     <h2 v-if="userrole == 0">Role: Player</h2>
     <h2 v-if="userrole == 1">Role: Admin</h2>
     <h2 v-if="userrole > 1">Role: Unknown</h2>
+    <h3>Nombre de pièces :</h3>
     <div>
       <button class="btn" @click="MyTrades">
         <img class="svg" src="../assets/img/trade.svg" />

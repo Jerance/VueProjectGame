@@ -42,6 +42,7 @@
           v-model="re_password"
           required
         />
+        <button type="submit">Confirm</button>
       </div>
     </form>
   </div>
