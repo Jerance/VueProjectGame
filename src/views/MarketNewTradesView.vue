@@ -7,24 +7,26 @@
     <div>
       <label for="quantity">Quantité</label>
       <input type="text" name="quantity" id="id_quantity" v-model="quantity" />
-      <select name="ressources" @change="onChange" v-model="ressources">
-        <option disabled="true">Choose one of ressources</option>
-        <option value="1">Bois</option>
-        <option value="2">Fer</option>
-        <option value="3">Pierre</option>
+      <select v-model="selected" name="name_ressource" id="name_ressource">
+        <option
+          v-for="resource in allResources"
+          :key="resource"
+          :value="resource"
+        >
+          {{ resource.id }} {{ resource.name }}
+        </option>
       </select>
     </div>
+    <input type="text" v-model="ressources_id" />
+    <p>Write your ressource id here : {{ ressources_id }}</p>
     <p>
       Récompenses :
       <input type="text" name="price" id="price" v-model="price" />
       <span>Pièces</span>
     </p>
   </div>
-  <p>{{ ressources }}</p>
-  <p>{{ quantity }}</p>
-  <p>{{ price }}</p>
 
-  <button v-on:click="createNewTrade(ressources, quantity, price)">
+  <button v-on:click="createNewTrade(ressources_id, quantity, price)">
     CreateNewTrade
   </button>
   <!--
@@ -62,14 +64,9 @@ import { useGameStore } from "../store/myStore.js";
 export default {
   data() {
     return {
-      selected: null,
-      options: [
-        { value: null, text: "Please select one ressources" },
-        { value: 1, text: "Wood" },
-        { value: 2, text: "Iron" },
-        { value: 3, text: "Stone" },
-      ],
+      selected: false,
       ressources_name: "",
+      ressources_id: 0,
       img_URL: "",
       base_value: 0,
       ressources: 0,
@@ -78,17 +75,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(useGameStore, ["authToken"]),
+    ...mapState(useGameStore, ["authToken", "allResources"]),
   },
   methods: {
-    ...mapActions(useGameStore, ["createNewTrade"]),
-    ...mapActions(useGameStore, ["createNewRessource2"]),
-    onChange(event) {
-      console.log(event.target.value, this.ressources);
-    },
-    onChangeRessource(eventRessource) {
-      console.log(eventRessource.target.text, this.ressources_name);
-    },
+    ...mapActions(useGameStore, [
+      "createNewTrade",
+      "createNewRessource2",
+      "getResources",
+    ]),
+  },
+  created() {
+    this.getResources();
   },
 };
 </script>
