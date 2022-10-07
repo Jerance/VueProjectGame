@@ -4,7 +4,7 @@ import axios from "axios";
 export const useGameStore = defineStore("store", {
   state: () => ({
     baseUrl: "http://apigame.co/",
-    // baseUrl: "http://localhost:3000/",
+    //baseUrl: "http://localhost:3000/",
     authToken: "",
     myFactories: [],
     axiosHeader: {},
@@ -15,6 +15,7 @@ export const useGameStore = defineStore("store", {
     userrole: 1,
     inventory: {},
     allResources: [],
+    Money: -1,
   }),
   actions: {
     async fetch(url) {
