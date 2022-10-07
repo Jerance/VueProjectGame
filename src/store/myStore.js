@@ -3,8 +3,8 @@ import axios from "axios";
 
 export const useGameStore = defineStore("store", {
   state: () => ({
-    baseUrl: "http://apigame.co/",
-    //baseUrl: "http://localhost:3000/",
+    //baseUrl: "http://apigame.co/",
+    baseUrl: "http://localhost:3000/",
     authToken: "",
     myFactories: [],
     axiosHeader: {},
@@ -13,6 +13,7 @@ export const useGameStore = defineStore("store", {
     mytrades: [],
     authStr: "",
     userrole: 9,
+    inventory: {},
   }),
   actions: {
     async fetch(url) {
@@ -81,7 +82,13 @@ export const useGameStore = defineStore("store", {
     FetchMyRole() {
       console.log("fetching userrrole");
       this.fetch("auth/me").then((response) => {
-        this.userrole = response.data.role;
+        this.userrole = response.role;
+      });
+    },
+    fetchInventory() {
+      console.log("fetching inventory");
+      return this.fetch("inventory/my").then((response) => {
+        this.inventory = response;
       });
     },
     login(id, pw) {

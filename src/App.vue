@@ -4,7 +4,7 @@
       <router-link to="/">Jeu</router-link>
     </div>
     <div v-if="authToken != ''" class="container">
-      <router-link to="/">Inventory</router-link>
+      <router-link to="/InventoryView">Inventory</router-link>
       <router-link to="/market">Market</router-link>
     </div>
     <div class="connection" v-if="authToken == ''">
@@ -47,6 +47,32 @@ body {
   padding: 0;
   background-color: rgba(220, 220, 220, 0.5);
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dfdfdf;
+  color: white;
+  padding: 0 1rem;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav div a {
+  color: #2c3e50;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+nav div a:hover {
+  background-color: #42b983;
+  color: white;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -69,17 +95,6 @@ body {
 .connection {
   display: flex;
   flex-direction: column;
-}
-
-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #dfdfdf;
-  height: 100%;
-  border-radius: 5px;
-  border-bottom: #2c3e50 solid 1px;
-  padding: 10px;
 }
 
 #app {

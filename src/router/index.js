@@ -43,6 +43,11 @@ const routes = [
     name: "ProfileMeView",
     component: () => import("../views/ProfileMeView.vue"),
   },
+  {
+    path: "/InventoryView",
+    name: "InventoryView",
+    component: () => import("../views/InventoryView.vue"),
+  },
 ];
 
 const router = createRouter({
