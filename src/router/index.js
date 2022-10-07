@@ -9,6 +9,10 @@ const routes = [
     component: HomeView,
   },
   {
+    path: "/home",
+    redirect: "/",
+  },
+  {
     path: "/signup",
     name: "signup",
     component: () => import("../views/SignUpView.vue"),
@@ -42,6 +46,11 @@ const routes = [
     path: "/ProfileMeView",
     name: "ProfileMeView",
     component: () => import("../views/ProfileMeView.vue"),
+  },
+  {
+    path: "/InventoryView",
+    name: "InventoryView",
+    component: () => import("../views/InventoryView.vue"),
   },
 ];
 
