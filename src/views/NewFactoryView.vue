@@ -2,11 +2,22 @@
   <div class="home">
     <h2>New factory</h2>
     <p>You have {{ emptySpots }} empty factory spots</p>
-    <select name="factoryType" id="factoryType">
-      <option v-for="type in factoryModels" :key="type.id" :value="type.id">
+    <label for="factoryType">Type of factory you want to make : </label>
+    <select v-model="selected" name="factoryType" id="factoryType">
+      <option v-for="type in factoryModels" :key="type.id" :value="type">
         {{ type.resource.name }}
       </option>
     </select>
+    <div v-if="show">
+      <p>
+        You already have {{ factoriesOfType }}
+        {{ selected.resource.name }} factories
+      </p>
+      <p>
+        {{ price }} coins
+        <button @click="create">Create factory</button>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -18,10 +29,31 @@ export default {
   name: "NewFactoryView",
   data() {
     return {
-      selected: -1,
+      selected: false,
     };
   },
   computed: {
+    show() {
+      return this.emptySpots > 0 && this.selected != false;
+    },
+    price() {
+      let prix = Math.pow(8, this.myFactories.length + 1);
+      if (this.myFactories.length == 0) {
+        return 40;
+      } else {
+        return prix;
+      }
+    },
+    factoriesOfType() {
+      let count = 0;
+      this.myFactories.forEach((factory) => {
+        console.log(this.selected.id);
+        if (factory.model.id == this.selected.id) {
+          count++;
+        }
+      });
+      return count;
+    },
     ...mapState(useGameStore, [
       "nbMaxFactories",
       "myFactories",
@@ -36,7 +68,11 @@ export default {
       "fetchMyFactories",
       "fetchFactoryModels",
       "getMaxFactories",
+      "post",
     ]),
+    create() {
+      this.post("factories", { factory_model: this.selected.resource.id });
+    },
   },
   created() {
     this.fetchMyFactories();
