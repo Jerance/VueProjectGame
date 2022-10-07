@@ -38,7 +38,7 @@ export default {
   width: 800px;
   height: 200px;
   text-align: center;
-  padding: 10px;
+  padding: 30px;
 }
 thead.trades-thead {
   font-weight: bold;

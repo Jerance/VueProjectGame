@@ -1,9 +1,15 @@
 <template>
   <h1>Community Official Market</h1>
-  <router-link to="/market">Community</router-link>
-  <router-link to="/market/mytrades">My Trades</router-link>
-  <router-link to="/market/newtrades">New Trade +</router-link>
-  <AllTradesContainer></AllTradesContainer>
+  <div id="tradeLinks">
+    <router-link class="router-link" to="/market">Community</router-link>
+    <router-link class="router-link" to="/market/mytrades">
+      My Trades
+    </router-link>
+    <router-link class="router-link" to="/market/newtrades">
+      New Trade +
+    </router-link>
+    <AllTradesContainer></AllTradesContainer>
+  </div>
 </template>
 
 <script>
@@ -28,4 +34,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.router-link {
+  color: #2c3e50;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+  box-shadow: #2c3e50 2px;
+  background-color: #cccccc;
+}
+</style>
