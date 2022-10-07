@@ -2,10 +2,14 @@
 <template>
   <div class="inventory">
     <h1>Inventory</h1>
-    <p>{{ inventory }}</p>
     <ul>
       <li v-for="resource in inventory.inventory_resources" :key="resource">
-        {{ resource }}
+        <img :src="resource.resource.image_url" alt="resource" />
+        <p>
+          Quantity : {{ resource.quantity }}
+          <br />
+          Factory : {{ resource.resource.name }}
+        </p>
       </li>
     </ul>
   </div>
@@ -29,3 +33,28 @@ export default {
   },
 };
 </script>
+
+<style>
+.inventory {
+  text-align: center;
+}
+
+.inventory ul {
+  list-style: none;
+  padding: 0;
+}
+
+.inventory li {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  box-shadow: rgb(84, 84, 84) 0 0 10px;
+  border-radius: 5px;
+}
+
+.inventory img {
+  width: 100px;
+  height: 100px;
+}
+</style>

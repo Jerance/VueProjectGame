@@ -12,7 +12,10 @@
       <router-link to="/signup">SignUp</router-link>
     </div>
     <div class="profilePerso" v-else>
-      <router-link to="/ProfileMeView">{{ username }}</router-link>
+      <div>
+        <router-link to="/ProfileMeView">{{ username }}</router-link>
+      </div>
+      <p id="moneyNav">{{ inventory.money }} Coins</p>
       <img
         src="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png"
         alt="avatar"
@@ -33,12 +36,16 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(useGameStore, ["baseUrl"]),
-    ...mapState(useGameStore, ["authToken"]),
-    ...mapState(useGameStore, ["username"]),
+    ...mapState(useGameStore, [
+      "baseUrl",
+      "authToken",
+      "username",
+      "inventory",
+    ]),
   },
   methods: {
     ...mapActions(useGameStore, ["login"]),
+    ...mapActions(useGameStore, ["fetchInventory"]),
   },
 };
 </script>
@@ -99,16 +106,6 @@ nav div a:hover {
   flex-direction: column;
 }
 
-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #dfdfdf;
-  height: 100%;
-  border-bottom: #2c3e50 solid 1px;
-  padding: 10px;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -127,6 +124,10 @@ nav a {
 }
 
 nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+#moneyNav {
   color: #42b983;
 }
 
