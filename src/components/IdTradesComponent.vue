@@ -7,7 +7,6 @@
       Acheter</button
     ><button class="btn-delete">Supprimer</button>
   </td>
-  <p>{{ trade }}</p>
 </template>
 
 <script>

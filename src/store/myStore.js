@@ -14,6 +14,7 @@ export const useGameStore = defineStore("store", {
     authStr: "",
     userrole: 1,
     inventory: {},
+    allResources: [],
     Money: -1,
   }),
   actions: {
@@ -174,7 +175,7 @@ export const useGameStore = defineStore("store", {
         name: "Bois",
         image_url:
           "https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_1280.jpg",
-        base_value: 1,
+        base_value: 10,
       }).then((data) => {
         console.log(data);
       });
@@ -206,6 +207,13 @@ export const useGameStore = defineStore("store", {
         quantity: quantity,
       }).then((data) => {
         console.log(data);
+      });
+    },
+
+    getResources() {
+      this.fetch("resources", {}).then((response) => {
+        console.log(response);
+        this.allResources = response;
       });
     },
   },
