@@ -31,7 +31,6 @@ export default {
 td.btn-containers-trade {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 7px;
   align-items: center;
 }
 
@@ -40,6 +39,7 @@ button.btn-buy {
   color: white;
   border-radius: 5px;
   font-weight: bold;
+  border: 1px solid lightgray;
 }
 
 button.btn-delete {

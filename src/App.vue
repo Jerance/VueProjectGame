@@ -55,6 +55,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgba(220, 220, 220, 0.5);
+  scroll-margin: 0;
 }
 
 nav {

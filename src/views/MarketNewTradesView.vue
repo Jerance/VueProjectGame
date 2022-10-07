@@ -7,7 +7,7 @@
   <router-link class="router-link" to="/market/newtrades">
     New Trade +
   </router-link>
-  <div>
+  <div class="containe-new-offer">
     <div>
       <label for="quantity">Quantité</label>
       <input type="text" name="quantity" id="id_quantity" v-model="quantity" />
@@ -94,4 +94,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.containe-new-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+</style>
