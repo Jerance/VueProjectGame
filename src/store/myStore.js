@@ -37,6 +37,30 @@ export const useGameStore = defineStore("store", {
         }
       }
     },
+    async delete(url) {
+      try {
+        const response = await axios.delete(
+          this.baseUrl + url,
+          this.axiosHeader
+        );
+        console.log(url + " deleted");
+        return response.data;
+      } catch (error) {
+        if (error.response) {
+          // Request made and server responded
+          alert("Error: unable to delete " + url);
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      }
+    },
     async post(url, input) {
       try {
         const response = await axios.post(
