@@ -20,6 +20,7 @@
     </div>
   </nav>
   <router-view />
+  <footer>Made using {{ baseUrl }} api</footer>
 </template>
 
 <script>
@@ -32,6 +33,7 @@ export default {
     return {};
   },
   computed: {
+    ...mapState(useGameStore, ["baseUrl"]),
     ...mapState(useGameStore, ["authToken"]),
     ...mapState(useGameStore, ["username"]),
   },
@@ -77,7 +79,6 @@ nav {
   align-items: center;
   background-color: #dfdfdf;
   height: 100%;
-  border-radius: 5px;
   border-bottom: #2c3e50 solid 1px;
   padding: 10px;
 }
@@ -101,5 +102,15 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+footer {
+  background-color: #dfdfdf;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 25px;
+  height: 50px;
+  border-top: #2c3e50 solid 1px;
 }
 </style>
