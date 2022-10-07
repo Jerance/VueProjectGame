@@ -1,5 +1,5 @@
 <template>
-  <h1>Market</h1>
+  <h1>Market - My Trades</h1>
   <router-link to="/market">Community</router-link>
   <router-link to="/market/mytrades">My Trades</router-link>
   <router-link to="/market/newtrades">New Trade +</router-link>
@@ -12,7 +12,7 @@ import { useGameStore } from "../store/myStore.js";
 import AllTradesContainer from "@/components/AllTradesContainer.vue";
 
 export default {
-  name: "MarketView",
+  name: "MarketMyTradesView",
   components: {
     AllTradesContainer,
   },
@@ -20,10 +20,10 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(useGameStore, ["getAllTrades"]),
+    ...mapActions(useGameStore, ["getAllMyTrades"]),
   },
   beforeMount() {
-    this.getAllTrades();
+    this.getAllMyTrades(this.trade);
   },
 };
 </script>
