@@ -12,7 +12,7 @@ export const useGameStore = defineStore("store", {
     trades: [],
     mytrades: [],
     authStr: "",
-    userrole: 9,
+    userrole: 1,
     inventory: {},
     Money: -1,
   }),
@@ -149,6 +149,7 @@ export const useGameStore = defineStore("store", {
       });
     },
     createNewTrade(resourceId, quantity, unitPrice) {
+      console.log(resourceId, quantity, unitPrice);
       this.post("trades", {
         resourceId: resourceId,
         quantity: quantity,
@@ -158,11 +159,21 @@ export const useGameStore = defineStore("store", {
         console.log(resource);
       });
     },
-    createNewRessource() {
-      this.postData("http://localhost:3000/resources", {
-        name: "Fer",
+    createNewRessource(name, image_url, base_value) {
+      this.postData("http://apigame.co/resources", {
+        name: name,
+        image_url: image_url,
+        base_value: base_value,
+      }).then((data) => {
+        console.log(data);
+      });
+    },
+
+    createNewRessource2() {
+      this.postData("http://apigame.co/resources", {
+        name: "Bois",
         image_url:
-          "https://d.wattpad.com/story_parts/737845095/images/15a2c96351dcd0a5170250432904.jpg",
+          "https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_1280.jpg",
         base_value: 1,
       }).then((data) => {
         console.log(data);
@@ -187,6 +198,15 @@ export const useGameStore = defineStore("store", {
       });
 
       return response.json();
+    },
+
+    buyTrade(trade_id, quantity) {
+      this.postData("http://apigame.co/trades/buy", {
+        id: trade_id,
+        quantity: quantity,
+      }).then((data) => {
+        console.log(data);
+      });
     },
   },
 });
