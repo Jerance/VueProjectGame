@@ -1,5 +1,5 @@
 <template>
-  <h1>Market</h1>
+  <h1>Community Official Market</h1>
   <router-link to="/market">Community</router-link>
   <router-link to="/market/mytrades">My Trades</router-link>
   <router-link to="/market/newtrades">New Trade +</router-link>
