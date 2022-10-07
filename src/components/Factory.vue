@@ -40,8 +40,12 @@ export default {
 };
 </script>
 
-<style>
-.div {
-  display: flex;
+<style scoped>
+div {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
 }
 </style>

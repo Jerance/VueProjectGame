@@ -1,7 +1,10 @@
 <template>
   <div v-if="authToken" class="home">
     <h1>Jeu</h1>
-    <button @click="newFactory">New factory</button>
+    <p>
+      <button @click="moreFactory">Upgrade factory limit</button>
+      <button @click="newFactory">New factory</button>
+    </p>
     <Factory v-for="factory in myFactories" :key="factory" :data="factory" />
   </div>
   <h1 v-else>
@@ -24,9 +27,13 @@ export default {
     ...mapState(useGameStore, ["authToken", "myFactories"]),
   },
   methods: {
-    ...mapActions(useGameStore, ["fetchMyFactories", "fetchInventory"]),
+    ...mapActions(useGameStore, ["fetchMyFactories", "fetchInventory", "post"]),
     newFactory() {
       this.$router.push("/new-factory");
+    },
+    moreFactory() {
+      this.post("users/buy-factory-limit");
+      console.log("upgrade factory limit");
     },
   },
   beforeUpdate() {
