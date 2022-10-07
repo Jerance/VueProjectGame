@@ -31,7 +31,7 @@
           v-model="re_password"
           required
         />
-        <button :disabled="isActive">Confirm</button>
+        <button type="submit" :disabled="isActive">Confirm</button>
       </div>
       <div class="password-form" v-else>
         <label class="username-label" for="password">Confirm Password</label
@@ -43,7 +43,6 @@
           required
         />
       </div>
-      <button type="submit">Confirm</button>
     </form>
   </div>
 </template>

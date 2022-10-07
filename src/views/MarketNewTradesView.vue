@@ -1,13 +1,17 @@
 <template>
   <h1>Market - New Offer</h1>
+  <router-link to="/market">Community</router-link>
+  <router-link to="/market/mytrades">My Trades</router-link>
+  <router-link to="/market/newtrades">New Trade +</router-link>
   <div>
     <div>
       <label for="quantity">Quantité</label>
       <input type="text" name="quantity" id="id_quantity" v-model="quantity" />
-      <select name="ressources" id="id_ressources">
-        <option value="Bois">Bois</option>
-        <option value="Fer">Fer</option>
-        <option value="Pierre">Pierre</option>
+      <select name="ressources" @change="onChange" v-model="ressources">
+        <option disabled="true">Choose one of ressources</option>
+        <option value="1">Bois</option>
+        <option value="2">Fer</option>
+        <option value="3">Pierre</option>
       </select>
     </div>
     <p>
@@ -29,9 +33,16 @@ import { useGameStore } from "../store/myStore.js";
 export default {
   data() {
     return {
-      ressources: 1,
-      quantity: 3,
-      price: 2,
+      selected: null,
+      options: [
+        { value: null, text: "Please select one ressources" },
+        { value: 1, text: "Wood" },
+        { value: 2, text: "Iron" },
+        { value: 3, text: "Stone" },
+      ],
+      ressources: 0,
+      quantity: 0,
+      price: 0,
     };
   },
   computed: {
@@ -40,6 +51,9 @@ export default {
   methods: {
     ...mapActions(useGameStore, ["createNewTrade"]),
     ...mapActions(useGameStore, ["createNewRessource"]),
+    onChange(event) {
+      console.log(event.target.value, this.ressources);
+    },
   },
 };
 </script>
