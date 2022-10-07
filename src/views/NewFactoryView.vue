@@ -72,6 +72,7 @@ export default {
     ]),
     create() {
       this.post("factories", { factory_model: this.selected.resource.id });
+      this.fetchMyFactories();
     },
   },
   created() {
