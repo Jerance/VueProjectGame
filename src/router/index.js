@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import NewFactoryView from "../views/NewFactoryView.vue";
 
 const routes = [
   {
@@ -8,13 +9,44 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/signup",
+    name: "signup",
+    component: () => import("../views/SignUpView.vue"),
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../views/LoginView.vue"),
+  },
+  {
+    path: "/market",
+    name: "market",
+    component: () => import("../views/MarketView.vue"),
+  },
+  {
+    path: "/market/mytrades",
+    name: "marketMyTradesView",
+    component: () => import("../views/MarketMyTradesView.vue"),
+  },
+  {
+    path: "/market/newtrades",
+    name: "marketNewTradesView",
+    component: () => import("../views/MarketNewTradesView.vue"),
+  },
+  {
+    path: "/new-factory",
+    name: "newFactory",
+    component: NewFactoryView,
+  },
+  {
+    path: "/ProfileMeView",
+    name: "ProfileMeView",
+    component: () => import("../views/ProfileMeView.vue"),
+  },
+  {
+    path: "/InventoryView",
+    name: "InventoryView",
+    component: () => import("../views/InventoryView.vue"),
   },
 ];
 
